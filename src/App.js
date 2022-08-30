@@ -1,29 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/navbar';
 import ItemListContainer from './container/itemListContainer';
+import { useState } from 'react';
 
 function App() {
+
+  const [cantidad, setCantidad] = useState(0);
+
   return (
     <div className="App">
       <h1>Panaderia Peruana</h1>
       <Navbar />
-      <ItemListContainer greeting="Productos destacados" color="yellow" />
-      <header className="App-header">
+      <ItemListContainer greeting="Productos destacados" color="yellow" 
+        cantidad = {cantidad}
+        setCantidad = {setCantidad}
       
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Proyecto Panadería - CanoMantilla
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      />
+      
     </div>
   );
 }
