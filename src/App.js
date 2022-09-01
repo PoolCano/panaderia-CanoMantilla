@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/navbar';
 import ItemListContainer from './container/itemListContainer';
 import { useState } from 'react';
+import ItemList from './components/itemList';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
         setCantidad = {setCantidad}
       
       />
-      
+      <ItemList color = "green"/>
     </div>
   );
 }

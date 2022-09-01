@@ -21,7 +21,7 @@ const ItemCount = ({cantidad, setCantidad}) => {
         <div>
             <form onSubmit={handleCantidad}>
                 <div>
-                    <label>Panes Varios</label>
+                    <label>Ingrese cantidad</label>
                     <input type="number" 
                             placeholder='Ingresa cantidad'
                             value={cantidad}
