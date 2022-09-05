@@ -1,42 +1,35 @@
-import { useState } from "react";
-import Mensaje from "./mensaje";
+import {useState, useEffect} from 'react'
 
-const ItemCount = ({cantidad, setCantidad}) => {
+const ItemCount = ({initial,stock,onAdd}) => {
 
-    const [mensaje, setMensaje] = useState('')
+    const [count,setCount] = useState(parseInt(initial));
 
-    const handleCantidad = (e) => {
-        e.preventDefault();
-
-        if(!cantidad || cantidad <0){
-            setMensaje('No es una cantidad correcta')
-            return
-        }
-
-        setMensaje('Cantidad correcta')
-
-    }
-
-    return(
-        <div>
-            <form onSubmit={handleCantidad}>
-                <div>
-                    <label>Ingrese cantidad</label>
-                    <input type="number" 
-                            placeholder='Ingresa cantidad'
-                            value={cantidad}
-                            onChange={e => setCantidad(Number(e.target.value))}
-                    />
-                </div>
-                <input type="submit" value="Añadir al carrito"/>
-
-                {mensaje && <Mensaje>{mensaje}</Mensaje>}
-            </form>
-
-        </div>
-               
-    )
-
+const decrementar = () => {
+    setCount(count - 1);
 }
 
-export default ItemCount;
+const incrementar = () => {
+    setCount(count + 1);
+}
+
+useEffect(() => {
+    setCount(parseInt(initial));
+},[initial]
+)
+
+  return (
+    <div>
+      <form onClick={e => e.preventDefault()}>
+      <label>Ingresa cantidad</label>
+        <div>
+            <button disabled={count <= 1} onClick={decrementar}>-</button>
+            <span>{count}</span>
+            <button disabled={count >= stock } onClick={incrementar}>+</button>
+        </div>
+            <button disabled={stock <=0} onClick={() => onAdd(count)}>Agregar al carrito</button>
+      </form>
+    </div>
+  )
+}
+
+export default ItemCount
