@@ -1,8 +1,9 @@
 import './App.css';
 import Navbar from './components/navbar';
 import ItemListContainer from './container/itemListContainer';
-import ItemList from './components/itemList';
 import ItemDetailContainer from './container/ItemDetailContainer';
+import Cart from './components/cart';
+import { BrowserRouter,Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -10,11 +11,15 @@ function App() {
   return (
     <div className="App">
       <h1>Panaderia Peruana</h1>
+      <BrowserRouter>
       <Navbar />
-      <ItemListContainer greeting="Productos destacados" color="yellow" />
-      <ItemList color = "green"/>
-      <ItemDetailContainer/>
-      
+      <Routes>
+        <Route path='/' element={<ItemListContainer />} />
+        <Route path='/category/:categoryId' element={<ItemListContainer />} />
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/item/:detailId' element={<ItemDetailContainer />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
